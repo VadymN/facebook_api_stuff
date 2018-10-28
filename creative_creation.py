@@ -18,9 +18,9 @@ def create_video_creation(video_id, image_url, page_id):
         video_data[AdCreativeVideoData.Field.video_id] = video_id
         video_data[AdCreativeVideoData.Field.image_url] = image_url
         video_data[AdCreativeVideoData.Field.call_to_action] = {
-            'type': 'LIKE_PAGE',
+            'type': 'BUY_TICKETS',
             'value': {
-                'page': page_id,
+                'link': 'www.ecommerce.ua',
             },
         }
 
@@ -31,6 +31,8 @@ def create_video_creation(video_id, image_url, page_id):
         creative = AdCreative(parent_id=f'act_{ad_account}')
         creative[AdCreative.Field.name] = 'Video Ad Creative-0'
         creative[AdCreative.Field.object_story_spec] = object_story_spec
+        creative[AdCreative.Field.url_tags] = destination_url #Добавить параметры из таблицы "Destinetion URL"
+
         return creative.remote_create()
 
 
